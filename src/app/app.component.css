@@ -1,0 +1,25 @@
+/* Main container for the app */
+.app-container {
+    display: flex;
+    height: 100vh; /* Full viewport height */
+    overflow: hidden;
+  }
+  
+  /* Sidebar */
+  app-sidenav {
+    width: 250px; /* Fixed width for the sidebar */
+    flex-shrink: 0; /* Prevent shrinking */
+    background-color: #343a40; /* Sidebar background color */
+    color: white;
+    height: 100%; /* Full height */
+    overflow-y: auto; /* Allow scrolling if content exceeds height */
+  }
+  
+  /* Routed Content */
+  .content-container {
+    flex: 1; /* Take up remaining space */
+    background-color: #f8f9fa; /* Main content background color */
+    padding: 20px; /* Add padding for better readability */
+    overflow-y: auto; /* Scrollable if content is larger than viewport */
+  }
+  

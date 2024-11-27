@@ -1,0 +1,89 @@
+<div class="sidebar">
+    <!-- Top Bar -->
+    <div class="top-bar">
+      <!-- Left Section -->
+      <div class="top-bar-left">
+        <img
+          src="https://image.similarpng.com/very-thumbnail/2020/05/Solutions-website-logo-png.png"
+          alt="Logo"
+          class="top-bar-logo"
+        />
+        <span class="top-bar-title">Arun Institute</span>
+      </div>
+  
+      <!-- Center Section -->
+      <div class="top-bar-center">
+        <input type="text" class="top-bar-search" placeholder="Search..." />
+      </div>
+  
+      <!-- Right Section -->
+      <div class="top-bar-right">
+        <a href="#" class="top-bar-link"><i class="bi bi-bell"></i></a>
+        <a href="#" class="top-bar-link"><i class="bi bi-person"></i></a>
+        <a href="#" class="top-bar-link"><i class="bi bi-gear"></i></a>
+      </div>
+    </div>
+  
+    <!-- Navigation Menu -->
+    <nav class="nav-menu">
+      <!-- Search Menu for Menu Items -->
+      <div>
+        <input
+          type="text"
+          class="form-control menu-search"
+          placeholder="Search menu..."
+        />
+      </div>
+  
+      <!-- Dynamic Menu Items -->
+      <ul class="list-unstyled">
+        <li *ngFor="let item of menuItems" class="nav-item">
+          <!-- Normal Navigation Item -->
+          <a
+            *ngIf="!item.hasSubmenu"
+            class="nav-link d-flex align-items-center"
+            [routerLink]="item.link"
+          >
+            <i [class]="item.icon"></i>
+            <span>{{ item.label }}</span>
+          </a>
+  
+          <!-- Submenu Toggle -->
+          <a
+            *ngIf="item.hasSubmenu"
+            href="javascript:void(0);"
+            class="nav-link d-flex align-items-center"
+            (click)="toggleSubmenu(item.label)"
+          >
+            <i [class]="item.icon"></i>
+            <span>{{ item.label }}</span>
+            <i
+              class="ms-auto"
+              [ngClass]="{
+                'bi-chevron-down': !isSubmenuOpen[item.label],
+                'bi-chevron-up': isSubmenuOpen[item.label]
+              }"
+            ></i>
+          </a>
+  
+          <!-- Submenu Items -->
+          <ul
+            *ngIf="item.hasSubmenu"
+            class="submenu list-unstyled"
+            [class.show]="isSubmenuOpen[item.label]"
+          >
+            <li *ngFor="let subItem of item.submenu">
+              <a
+                class="nav-link"
+                [routerLink]="subItem.link"
+                routerLinkActive="active"
+              >
+                {{ subItem.label }}
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  
