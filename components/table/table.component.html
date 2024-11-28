@@ -1,72 +1,111 @@
-<div class="container-fluid">
+<div class="container-fluid" style="margin-top: 60px;">
     <!-- Search and Add Section -->
-    <div class="d-flex justify-content-between align-items-center mb-3">
-      <div class="search-section">
-        <h6>Search</h6>
-        <input 
-          type="text" 
-          class="form-control" 
-          placeholder="Search by area or skill"
-          [(ngModel)]="searchTerm"
-        />
-      </div>
-    </div>
-  
-    <!-- Table -->
-    <div class="table-responsive">
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th>Area</th>
-            <th>Skill</th>
-            <th>Rank</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let skill of paginatedSkills">
-            <td>{{ skill.area }}</td>
-            <td>{{ skill.skill }}</td>
-            <td>{{ skill.rank }}</td>
-            <td>
-              <button 
-                class="btn btn-link edit-btn buttonedit" 
-                (click)="editSkill(skill)">
-                Edit <i class="bi bi-pencil-square"></i>
+    <mat-card appearance="outlined" class="matcard" >
+        
+        <div class="table-controls">
+            <!-- Left Section: Icons -->
+            <div class="controls-left">
+              <button mat-icon-button class="button">
+                <mat-icon>add</mat-icon>
               </button>
-            </td>
-          </tr>
-          <tr *ngIf="paginatedSkills.length === 0">
-            <td colspan="4" class="text-center">No matching skills found</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  
-    <!-- Pagination -->
-    <div class="d-flex">
-      <div class="pagination-controls">
-        <button
-          class="btn btn-link"
-          [disabled]="currentPage === 1"
-          (click)="onPageChange(currentPage - 1)">
-          «
-        </button>
-        <button
-          class="btn"
-          *ngFor="let page of totalPages"
-          [ngClass]="{ 'btn-primary': page === currentPage, 'btn-link': page !== currentPage }"
-          (click)="onPageChange(page)">
-          {{ page }}
-        </button>
-        <button
-          class="btn btn-link"
-          [disabled]="currentPage === maxPage"
-          (click)="onPageChange(currentPage + 1)">
-          »
-        </button>
+              <button mat-icon-button class="button">
+                <mat-icon>person_add</mat-icon>
+              </button>
+              <button mat-icon-button class="button bg-danger">
+                <mat-icon >delete</mat-icon>
+              </button>
+              <button mat-icon-button class="button">
+                <mat-icon>filter_list</mat-icon>
+              </button>
+            </div>
+          
+            <!-- Center Section: Search -->
+            <div class="controls-center">
+                <div class="search-container">
+                  <input
+                    matInput
+                    placeholder="Search by name, mobile, username..."
+                    class="search-input"
+                  />
+                  <button mat-icon-button class="search-button">
+                    <mat-icon>search</mat-icon>
+                  </button>
+                </div>
+              </div>
+          
+            <!-- Right Section: Total & Deleted -->
+            <div class="controls-right">
+              <span class="total-label">Total: <b>(0)</b></span>
+              <span class="deleted-label">Deleted: <b>(0)</b></span>
+            </div>
+          </div>
+          
+          
+          
+    </mat-card>
+   
+
+    
+      <!-- Table -->
+      <div class="table-responsive" style="bottom: 0 !important;top: 0 !important;">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Area</th>
+              <th>Skill</th>
+              <th>Rank</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let skill of paginatedSkills">
+              <td>{{ skill.area }}</td>
+              <td>{{ skill.skill }}</td>
+              <td>{{ skill.rank }}</td>
+              <td>
+                <button 
+                  class="btn btn-link edit-btn" style="border: none;"
+                  (click)="editSkill(skill)"> <i class="bi bi-pencil-square"></i>
+                </button>
+              </td>
+            </tr>
+            <tr *ngIf="paginatedSkills.length === 0">
+              <td colspan="4" class="text-center">No matching skills found</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-    </div>
+      
+      <!-- Pagination -->
+    <div class="">
+        <div class="">
+          <button
+            class="btn btn-link"
+            [disabled]="currentPage === 1"
+            (click)="onPageChange(currentPage - 1)">
+            «
+          </button>
+          <button
+            class="btn"
+            *ngFor="let page of totalPages"
+            [ngClass]="{ 'btn-primary': page === currentPage, 'btn-link': page !== currentPage }"
+            (click)="onPageChange(page)">
+            {{ page }}
+          </button>
+          <button
+            class="btn btn-link"
+            [disabled]="currentPage === maxPage"
+            (click)="onPageChange(currentPage + 1)">
+            »
+          </button>
+        </div>
+      </div>
+
+
   </div>
+
+
   
+  
+
   

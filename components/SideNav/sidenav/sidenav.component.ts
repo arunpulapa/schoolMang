@@ -2,36 +2,72 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { link } from 'fs';
+import { MatIconModule } from '@angular/material/icon';
 @Component({
   selector: 'app-sidenav',
   standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule],
+  imports: [CommonModule, RouterModule, FormsModule, MatIconModule],
   templateUrl: './sidenav.component.html',
   styleUrl: './sidenav.component.css'
 })
 export class SidenavComponent {
+  currentYear: number = new Date().getFullYear();
+  sessionYears: string[] = [];
+  selectedSession: string = `${this.currentYear} - ${this.currentYear + 1}`;
+
   menuItems = [
     { icon: 'bi bi-speedometer2', label: 'Dashboard', link: '/table' },
+    { icon: 'bi bi-speedometer2', label: 'Dashboard', link: '' },
     {
-      icon: 'bi bi-funnel',
-      label: 'Leads',
-      hasSubmenu: true,
-      submenu: [
-        { label: 'Submenu Item 1', link: '/' },
-        { label: 'Submenu Item 2', link: '/' },
-      ],
-    },
-    {
-      icon: 'bi bi-person-video3',
       label: 'Teachers',
+      icon: 'bi bi-funnel',
       hasSubmenu: true,
+      link:'/table',
       submenu: [
-        { label: 'Teacher 1', link: '/' },
-        { label: 'Teacher 2', link: '/' },
+        {
+          label: 'All Teachers',
+          link: 'https://account.vedmarg.com/user/teachers',
+          icon: 'bi bi-funnel',
+        },
+        {
+          label: 'Deleted',
+          link: '/table',
+          icon: 'bi bi-funnel',
+        },
       ],
     },
-    { icon: 'bi bi-mortarboard', label: 'Students', link: '/students' },
+    {
+      label: 'Students',
+      icon: 'bi bi-funnel',
+      hasSubmenu: true,
+      link:'/table',
+      submenu: [
+        {
+          label: 'All Teachers',
+          link: 'https://account.vedmarg.com/user/teachers',
+          icon: 'bi bi-funnel',
+        },
+        {
+          label: 'Deleted',
+          link: '/table',
+          icon: 'bi bi-funnel',
+        },
+      ],
+    },
+    { icon: 'bi bi-mortarboard', label: 'parents', link: '/grid' },
+    { icon: 'bi bi-mortarboard', label: 'Attendence', link: '/grid' },
+    // Add more items here as needed
   ];
+
+  ngOnInit(): void {
+    // Generate session years in the "YYYY - YYYY" format
+    for (let i = 0; i < 2; i++) {
+      const startYear = this.currentYear + i;
+      const endYear = startYear + 1;
+      this.sessionYears.push(`${startYear} - ${endYear}`);
+    }
+  }
 
   isSubmenuOpen: { [key: string]: boolean } = {};
   searchTerm: string = '';  // Variable to store the search term

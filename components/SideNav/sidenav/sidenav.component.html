@@ -1,8 +1,6 @@
 <div class="sidebar">
-    <!-- Top Bar -->
     <div class="top-bar">
-      <!-- Left Section -->
-      <div class="top-bar-left">
+      <div class="top-bar-left d-flex align-items-center">
         <img
           src="https://image.similarpng.com/very-thumbnail/2020/05/Solutions-website-logo-png.png"
           alt="Logo"
@@ -11,22 +9,39 @@
         <span class="top-bar-title">Arun Institute</span>
       </div>
   
-      <!-- Center Section -->
       <div class="top-bar-center">
-        <input type="text" class="top-bar-search" placeholder="Search..." />
+        <div class="controls-center">
+            <div class="search-container">
+              <input
+                matInput
+                placeholder="Search by name, mobile, username..."
+                class="search-input"
+              />
+              <button mat-icon-button class="search-button">
+                <mat-icon>close</mat-icon>
+              </button>
+            </div>
+          </div>
       </div>
   
-      <!-- Right Section -->
       <div class="top-bar-right">
+        <div class="session-year-dropdown">
+            <label for="session-year">Session Year: </label>
+            <select id="session-year" [(ngModel)]="selectedSession">
+              <option *ngFor="let session of sessionYears" [value]="session">
+                {{ session }}
+              </option>
+            </select>
+          </div>
+          
         <a href="#" class="top-bar-link"><i class="bi bi-bell"></i></a>
         <a href="#" class="top-bar-link"><i class="bi bi-person"></i></a>
         <a href="#" class="top-bar-link"><i class="bi bi-gear"></i></a>
+      
       </div>
     </div>
   
-    <!-- Navigation Menu -->
     <nav class="nav-menu">
-      <!-- Search Menu for Menu Items -->
       <div>
         <input
           type="text"
@@ -35,49 +50,26 @@
         />
       </div>
   
-      <!-- Dynamic Menu Items -->
       <ul class="list-unstyled">
         <li *ngFor="let item of menuItems" class="nav-item">
-          <!-- Normal Navigation Item -->
-          <a
-            *ngIf="!item.hasSubmenu"
-            class="nav-link d-flex align-items-center"
-            [routerLink]="item.link"
-          >
+          <!-- Regular Menu Items -->
+          <a *ngIf="!item.hasSubmenu" class="nav-link d-flex align-items-center" [routerLink]="item.link">
             <i [class]="item.icon"></i>
-            <span>{{ item.label }}</span>
+            <span class="menu-item-label">{{ item.label }}</span>
           </a>
   
-          <!-- Submenu Toggle -->
-          <a
-            *ngIf="item.hasSubmenu"
-            href="javascript:void(0);"
-            class="nav-link d-flex align-items-center"
-            (click)="toggleSubmenu(item.label)"
-          >
+          <!-- Submenu Items with Toggle Arrow -->
+          <a *ngIf="item.hasSubmenu" href="javascript:void(0);" class="nav-link d-flex align-items-center" (click)="toggleSubmenu(item.label)">
             <i [class]="item.icon"></i>
-            <span>{{ item.label }}</span>
-            <i
-              class="ms-auto"
-              [ngClass]="{
-                'bi-chevron-down': !isSubmenuOpen[item.label],
-                'bi-chevron-up': isSubmenuOpen[item.label]
-              }"
-            ></i>
+            <span class="menu-item-label">{{ item.label }}</span>
+            <i class="submenu-arrow ms-auto" [ngClass]="{'bi-chevron-down': !isSubmenuOpen[item.label], 'bi-chevron-up': isSubmenuOpen[item.label]}"></i>
           </a>
   
-          <!-- Submenu Items -->
-          <ul
-            *ngIf="item.hasSubmenu"
-            class="submenu list-unstyled"
-            [class.show]="isSubmenuOpen[item.label]"
-          >
+          <!-- Submenu Content -->
+          <ul *ngIf="item.hasSubmenu" class="submenu list-unstyled" [class.show]="isSubmenuOpen[item.label]">
             <li *ngFor="let subItem of item.submenu">
-              <a
-                class="nav-link"
-                [routerLink]="subItem.link"
-                routerLinkActive="active"
-              >
+              <a class="nav-link" [routerLink]="subItem.link" routerLinkActive="active">
+                <i [class]="subItem.icon"></i>
                 {{ subItem.label }}
               </a>
             </li>

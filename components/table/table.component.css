@@ -109,16 +109,103 @@
     opacity: 0.5;
     cursor: not-allowed;
   }
-  
+  .matcard{
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    outline: none;
+    border: 1px solid #dee2e6;
+
+  }
   
 
   .table-responsive {
-    margin-top: 20px;
     overflow-x: auto;
     border: 1px solid #dee2e6; /* Add border around the entire table */
     border-radius: 6px; /* Smooth corners */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
   }
+
+  /*  */
+  .table-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #f6f8fc; /* Light background color */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow */
+  }
+  
+  .controls-left {
+    display: flex;
+    gap: 10px; /* Spacing between icons */
+  }
+  
+  .controls-center {
+    flex-grow: 1; /* Push left and right sections apart */
+    display: flex;
+    justify-content: center;
+  }
+  
+  .search-container {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    border: 1px solid #dcdcdc;
+    border-radius: 25px; /* Rounded edges */
+    overflow: hidden;
+    width: 60%; /* Set the width of the search bar */
+    max-width: 400px; /* Optional max width */
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1); /* Subtle inset shadow */
+  }
+  
+  .search-input {
+    flex-grow: 1;
+    border: none;
+    padding: 10px 15px;
+    font-size: 14px;
+    outline: none;
+  }
+  
+  .search-button {
+    background-color: #0054a6; /* Match search button color */
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .search-button mat-icon {
+    font-size: 20px;
+  }
+  
+  .controls-right {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Spacing between Total and Deleted */
+  }
+  
+  .total-label,
+  .deleted-label {
+    font-size: 14px;
+    color: #333; /* Text color */
+    font-weight: 500; /* Optional boldness */
+  }
+  
+  /* Remove default input focus outline */
+  .search-input:focus {
+    outline: none;
+    box-shadow: none;
+  }
+  
+  button:focus {
+    outline: none;
+  }
+  
+  /*  */
   
   .table {
     width: 100%;
@@ -233,7 +320,7 @@
   }
   
   .table-responsive {
-    margin-bottom: 50px; /* Ensures spacing between table and pagination */
+    margin-bottom: 10px; /* Ensures spacing between table and pagination */
   }
   .buttonedit{
     padding: 5px;
@@ -248,3 +335,24 @@
         
         }
 
+        .button{
+        border-radius: 6px;
+        padding: 0 5px;
+        height: 28px;
+        line-height: 28px;
+        display: inline-flex;
+        font-size: 12px;
+        background: #0099fe;
+        border-color: transparent;
+        color: #fff;
+        min-width: 28px;
+        align-items: center;
+        justify-content: center;
+        vertical-align: middle;
+        cursor: pointer;
+    }
+
+    /* mat dialog  */
+    
+    
+    /*  */
