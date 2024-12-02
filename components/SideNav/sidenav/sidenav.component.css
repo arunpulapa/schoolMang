@@ -1,6 +1,6 @@
 /* Sidebar Styling */
 .sidebar {
-    width: 280px;
+    width: 250px;
     height: 100vh;
     background: #fff;
     border-right: 1px solid #e0e0e0;
@@ -65,7 +65,7 @@
   }
   
   .submenu .nav-link {
-    padding-left: 4rem;
+    padding-left: 2.5rem;
     font-size: 0.9rem;
   }
   
@@ -250,3 +250,114 @@
     border-radius: 5px;
   }
   
+.sidebar.open {
+    left: 0;
+  }
+  
+  .sidebar-toggle-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #fff;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  .sidebar-toggle-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #fff;
+    cursor: pointer;
+  }
+  .nav-menu {
+    padding: 20px;
+    background-color: #f4f4f4;
+    height: 100%;
+  }
+
+
+
+  
+/* Sidebar Styling */
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background: #fff;
+    border-right: 1px solid #e0e0e0;
+    position: fixed;
+    left: -250px; /* Start off-screen */
+    top: 60px;
+    transition: left 0.3s ease; /* Add smooth transition */
+    overflow-y: auto;
+    z-index: 999;
+  }
+  
+  .sidebar.open {
+    left: 0; /* Move sidebar into view */
+  }
+  
+  .sidebar .sidebar-toggle-btn {
+    border: none;
+    background: none;
+    cursor: pointer;
+  }
+  
+  .nav-menu {
+    padding: 1rem 0;
+  }
+  
+  .nav-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .nav-item {
+    margin: 0;
+  }
+  
+  .nav-link {
+    padding: 0.75rem 1.5rem;
+    color: #666;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: all 0.3s ease;
+  }
+  
+  .nav-link:hover {
+    background-color: #f8f9fa;
+    color: #0d6efd;
+  }
+  
+
+
+  
+  /* Customize the scrollbar */
+  .sidebar::-webkit-scrollbar {
+    width: 8px; /* Width of the scrollbar */
+    height: 8px; /* Height of the horizontal scrollbar (if applicable) */
+  }
+  
+  .sidebar::-webkit-scrollbar-thumb {
+    background-color: #888; /* Color of the scroll thumb */
+    border-radius: 10px; /* Rounded corners for the thumb */
+    border: 2px solid #fff; /* Adds a border around the thumb */
+  }
+  
+  .sidebar::-webkit-scrollbar-thumb:hover {
+    background-color: #555; /* Darker thumb color on hover */
+  }
+  
+  .sidebar::-webkit-scrollbar-track {
+    background-color: #f1f1f1; /* Track color */
+    border-radius: 10px; /* Rounded corners for the track */
+  }
+  
+  /* For Firefox */
+  .sidebar {
+    scrollbar-width: thin; /* Makes the scrollbar thinner */
+    scrollbar-color: #888 #f1f1f1; /* Thumb color and track color */
+  }
+ 

@@ -7,9 +7,8 @@
   
   /* Sidebar */
   app-sidenav {
-    width: 250px; /* Fixed width for the sidebar */
+    width: 50px; /* Fixed width for the sidebar */
     flex-shrink: 0; /* Prevent shrinking */
-    background-color: #343a40; /* Sidebar background color */
     color: white;
     height: 100%; /* Full height */
     overflow-y: auto; /* Allow scrolling if content exceeds height */

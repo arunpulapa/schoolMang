@@ -1,6 +1,10 @@
-<div class="sidebar">
+<div class="sidebar" [class.open]="sidebarOpen">
+    <!-- Top Bar -->
     <div class="top-bar">
       <div class="top-bar-left d-flex align-items-center">
+        <button (click)="toggleSidebar()" class="sidebar-toggle-btn">
+          <mat-icon style="color: black; margin-top: 10px;">menu</mat-icon>
+        </button>
         <img
           src="https://image.similarpng.com/very-thumbnail/2020/05/Solutions-website-logo-png.png"
           alt="Logo"
@@ -11,64 +15,86 @@
   
       <div class="top-bar-center">
         <div class="controls-center">
-            <div class="search-container">
-              <input
-                matInput
-                placeholder="Search by name, mobile, username..."
-                class="search-input"
-              />
-              <button mat-icon-button class="search-button">
-                <mat-icon>close</mat-icon>
-              </button>
-            </div>
+          <div class="search-container">
+            <input
+              matInput
+              [(ngModel)]="searchTerm"
+              placeholder="Search by name, mobile, username..."
+              class="search-input"
+            />
+            <button mat-icon-button class="search-button">
+              <mat-icon>close</mat-icon>
+            </button>
           </div>
+        </div>
       </div>
   
       <div class="top-bar-right">
         <div class="session-year-dropdown">
-            <label for="session-year">Session Year: </label>
-            <select id="session-year" [(ngModel)]="selectedSession">
-              <option *ngFor="let session of sessionYears" [value]="session">
-                {{ session }}
-              </option>
-            </select>
-          </div>
-          
+          <label for="session-year">Session Year:</label>
+          <select id="session-year" [(ngModel)]="selectedSession">
+            <option *ngFor="let session of sessionYears" [value]="session">
+              {{ session }}
+            </option>
+          </select>
+        </div>
+  
         <a href="#" class="top-bar-link"><i class="bi bi-bell"></i></a>
         <a href="#" class="top-bar-link"><i class="bi bi-person"></i></a>
         <a href="#" class="top-bar-link"><i class="bi bi-gear"></i></a>
-      
       </div>
     </div>
   
+    <!-- Navigation Menu -->
     <nav class="nav-menu">
       <div>
         <input
           type="text"
           class="form-control menu-search"
           placeholder="Search menu..."
+          [(ngModel)]="searchTerm"
         />
       </div>
   
       <ul class="list-unstyled">
-        <li *ngFor="let item of menuItems" class="nav-item">
-          <!-- Regular Menu Items -->
-          <a *ngIf="!item.hasSubmenu" class="nav-link d-flex align-items-center" [routerLink]="item.link">
+        <li *ngFor="let item of filteredMenuItems()" class="nav-item">
+          <a
+            *ngIf="!item.hasSubmenu"
+            class="nav-link d-flex align-items-center"
+            [routerLink]="item.link"
+          >
             <i [class]="item.icon"></i>
             <span class="menu-item-label">{{ item.label }}</span>
           </a>
   
-          <!-- Submenu Items with Toggle Arrow -->
-          <a *ngIf="item.hasSubmenu" href="javascript:void(0);" class="nav-link d-flex align-items-center" (click)="toggleSubmenu(item.label)">
+          <a
+            *ngIf="item.hasSubmenu"
+            href="javascript:void(0);"
+            class="nav-link d-flex align-items-center"
+            (click)="toggleSubmenu(item.label)"
+          >
             <i [class]="item.icon"></i>
             <span class="menu-item-label">{{ item.label }}</span>
-            <i class="submenu-arrow ms-auto" [ngClass]="{'bi-chevron-down': !isSubmenuOpen[item.label], 'bi-chevron-up': isSubmenuOpen[item.label]}"></i>
+            <i
+              class="submenu-arrow ms-auto"
+              [ngClass]="{
+                'bi-chevron-down': !isSubmenuOpen[item.label],
+                'bi-chevron-up': isSubmenuOpen[item.label]
+              }"
+            ></i>
           </a>
   
-          <!-- Submenu Content -->
-          <ul *ngIf="item.hasSubmenu" class="submenu list-unstyled" [class.show]="isSubmenuOpen[item.label]">
+          <ul
+            *ngIf="item.hasSubmenu"
+            class="submenu list-unstyled"
+            [class.show]="isSubmenuOpen[item.label]"
+          >
             <li *ngFor="let subItem of item.submenu">
-              <a class="nav-link" [routerLink]="subItem.link" routerLinkActive="active">
+              <a
+                class="nav-link"
+                [routerLink]="subItem.link"
+                routerLinkActive="active"
+              >
                 <i [class]="subItem.icon"></i>
                 {{ subItem.label }}
               </a>

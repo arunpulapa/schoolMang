@@ -4,7 +4,9 @@ import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import {MatCardModule} from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
-
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { DialogComponent } from '../dialog/dialog.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 interface Skill {
   area: string;
   skill: string;
@@ -14,7 +16,7 @@ interface Skill {
 @Component({
   selector: 'app-table',
   standalone: true,
-  imports: [CommonModule, FormsModule,MatIconModule, MatCardModule, MatFormFieldModule],
+  imports: [CommonModule, FormsModule,MatIconModule, MatCardModule, MatFormFieldModule, MatDialogModule],
   templateUrl: './table.component.html',
   styleUrl: './table.component.css'
 })
@@ -32,6 +34,7 @@ export class TableComponent {
     { area: 'Development', skill: 'Angular', rank: 42 },
     { area: 'Testing', skill: 'React', rank: 38 },
   ];
+  constructor(private modalService: NgbModal) {}
 
   get filteredSkills() {
     const searchTermLower = this.searchTerm.toLowerCase();
